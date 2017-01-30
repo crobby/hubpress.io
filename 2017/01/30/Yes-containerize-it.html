@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Yes, containerize it!</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Yes, containerize it!">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Yes, containerize it!">
+    <meta property="og:description" content="">
+
+    <!-- <meta name="twitter:site" content="">
+
+<meta name="twitter:creator" content="">
+
+<meta name="google-site-verification" content="">
+
+<meta property="fb:admins" content="">
+ -->
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="//crobby.github.io/hubpress.io/themes/ghostium/assets/css/main.min.css?v=1485811871315"/>
+    <link rel="stylesheet" href="//crobby.github.io/hubpress.io/themes/ghostium/assets/css/custom.css?v=1485811871315"/>
+    <link rel="stylesheet" href="//crobby.github.io/hubpress.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1485811871315"/>
+
+
+
+
+    <script type="text/javascript">
+      var ga_ua = 'UA-XXXXX-X';
+      
+      var disqus_shortname = 'example';
+      
+      var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="//crobby.github.io/hubpress.io/themes/ghostium/assets/js/head-scripts.min.js?v=1485811871315"></script>
+
+    <link rel="canonical" href="https://crobby.github.io/hubpress.io/2017/01/30/Yes-containerize-it.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="Making sense of it" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yes, containerize it!" />
+    <meta property="og:description" content="Where am I going with this? This is meant to be a bit of an introductory post where I can explain a bit of where I&amp;#8217;m coming from and where I think I&amp;#8217;m headed.  Later posts will include tutorials and quickstart guides for using some of" />
+    <meta property="og:url" content="https://crobby.github.io/hubpress.io/2017/01/30/Yes-containerize-it.html" />
+    <meta property="article:tag" content="openshift" />
+    <meta property="article:tag" content=" containers" />
+    <meta property="article:tag" content=" spark" />
+    <meta property="article:tag" content=" cluster" />
+    <meta property="article:tag" content=" big data" />
+    <meta property="article:tag" content=" extension" />
+    <meta property="article:tag" content=" angular" />
+    <meta property="article:tag" content=" origin" />
+    <meta property="article:tag" content=" kubernetes" />
+    <meta property="article:tag" content=" console" />
+    <meta property="article:tag" content=" docker" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Yes, containerize it!" />
+    <meta name="twitter:description" content="Where am I going with this? This is meant to be a bit of an introductory post where I can explain a bit of where I&amp;#8217;m coming from and where I think I&amp;#8217;m headed.  Later posts will include tutorials and quickstart guides for using some of" />
+    <meta name="twitter:url" content="https://crobby.github.io/hubpress.io/2017/01/30/Yes-containerize-it.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="Making sense of it" href="https://crobby.github.io/hubpress.io/rss/" />
+  </head>
+  <body class="post-template tag-openshift tag-containers tag-spark tag-cluster tag-big-data tag-extension tag-angular tag-origin tag-kubernetes tag-console tag-docker">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+    <nav tabindex="-1" class="drawer">
+      <div class="drawer-container">
+        <!--.drawer-search(role="search")-->
+        <ul role="navigation" class="drawer-list">
+          
+          <li class="drawer-list-item">
+            <a href="https://crobby.github.io/hubpress.io" data-pjax>
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          <!-- <li class="drawer-list-item">
+            <a href="https://crobby.github.io/hubpress.io" title="Making sense of it" data-pjax>
+              <i class="fa fa-list-alt"></i>All posts
+            </a>
+          </li> -->
+          <li class="drawer-list-item">
+            <a href="https://crobby.github.io/hubpress.io/rss/">
+              <i class="fa fa-rss"></i>Subscribe to Feed
+            </a>
+          </li>
+          <li class="drawer-list-divider"></li>
+          <li class="drawer-list-item drawer-list-title">
+            Follow me
+          </li>
+          
+          
+          <li class="drawer-list-item">
+            <a href="crobby" title="Github" target="_blank">
+              <i class="fa fa-github"></i>Github
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="mailto:croberts@redhat.com" title="Email" target="_blank">
+              <i class="fa fa-envelope-o"></i>Email
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-openshift tag-containers tag-spark tag-cluster tag-big-data tag-extension tag-angular tag-origin tag-kubernetes tag-console tag-docker">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2017-01-30" itemprop="datePublished">
+                  17 hours ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                  <span class="tags"><i class="fa fa-tags"></i>
+                      <span>
+                      <a href="https://crobby.github.io/hubpress.io/tag/openshift/">openshift</a>, <a href="https://crobby.github.io/hubpress.io/tag/containers/"> containers</a>, <a href="https://crobby.github.io/hubpress.io/tag/spark/"> spark</a>, <a href="https://crobby.github.io/hubpress.io/tag/cluster/"> cluster</a>, <a href="https://crobby.github.io/hubpress.io/tag/big-data/"> big data</a>, <a href="https://crobby.github.io/hubpress.io/tag/extension/"> extension</a>, <a href="https://crobby.github.io/hubpress.io/tag/angular/"> angular</a>, <a href="https://crobby.github.io/hubpress.io/tag/origin/"> origin</a>, <a href="https://crobby.github.io/hubpress.io/tag/kubernetes/"> kubernetes</a>, <a href="https://crobby.github.io/hubpress.io/tag/console/"> console</a>, <a href="https://crobby.github.io/hubpress.io/tag/docker/"> docker</a></span>
+                  </span>
+                </li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="https://crobby.github.io/hubpress.io/2017/01/30/Yes-containerize-it.html" itemprop="url" data-pjax title="Yes, containerize it!">Yes, containerize it!</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="" class="post-author-avatar">
+                  <img src="https://avatars.githubusercontent.com/u/889317?v&#x3D;3" alt="Chad Roberts">
+                </a>
+              <div class="post-author-info">
+                <a href="" class="post-author-name">
+                  Chad Roberts
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <div class="sect1">
+<h2 id="_where_am_i_going_with_this">Where am I going with this?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is meant to be a bit of an introductory post where I can explain a bit of where I&#8217;m coming from and where I think I&#8217;m headed.  Later posts will include tutorials and quickstart guides for using some of the work that I&#8217;m involved with that centers around running Apache Spark clusters on top of OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wow_containers_are_great">Wow, containers are great</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I&#8217;m going to assume that this isn&#8217;t your first rodeo and that you know a bit about what containers are and how they work.  When I first stumbled on containers (via docker) a few years ago, I felt like I was watching a magic show.  I had done quite a bit of work with virtual machines and I was actively working on OpenStack.  Given that, my usual workflow to make something happen was 1) build an image (usually via something sort of painful like disk-image-builder), load it into my OpenStack instance, spin-up the vm and hope that it was working properly.  If not, rinse and repeat.  Each loop would take several minutes if I was lucky.  To see a container on my Fedora machine fire-up and run it CentOs bits at light speed was quite a rush.  A quick pull of the centrally-shared image and I was on my way.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_probably_not_just_for_hello_world_but_i_just_don_t_see_it_yet">Probably not just for "Hello, world!", but I just don&#8217;t see it yet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My first brush with containers was moslty just toying around.  Various flavors of "Hello, world!" were run and I was happy with that for the time being.  Surely, my mighty vms were still more interesting.  Making the vms networking and storage options work didn&#8217;t require a pile of command line args and there was already a lot of nice tooling around them.  The vms were still much more comforatble to me.  Making my containers do networking and storage seemed rather flimsy by comparisson.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fast_forward_a_few_years_and_enter_kubernetes_and_openshift">Fast forward a few years and enter Kubernetes and OpenShift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Eventually, I got around to taking a look at OpenShift, which is a customized spin of Kubernetes with some niceities around it (API tweaks, security, et al.).  After a quick one-liner to start up a single-node OpenShift instance (Do download an OpenShift release (<a href="https://github.com/openshift/origin/releases" class="bare">https://github.com/openshift/origin/releases</a>) and try the "oc cluster up" commandand---genius stuff) a few clicks, I had a small  containerized nodejs front end that interacted nicely with a containerized mongodb backend that "just worked".  On top of that it was scaleable with another click.  All that functionality running on my laptop in minutes with almost no knowledge or effort on my part.  No longer did the world of containers seem flimsy to me.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_doing_real_work_in_containers">Doing real work in containers?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Containers are lovely, but they are still only as useful as the software running in them.  Enter Apache Spark (<a href="http://spark.apache.org/" class="bare">http://spark.apache.org/</a>).  Spark is a great tool for processing super large scale datasets.  It has a basic master/worker architecture and in the past I had worked on bringing Spark to OpenStack&#8217;s Sahara project.  Sahara would spin-up a given number of vm instances to run a Spark master and some number of workers.  Terrific stuff really.  It worked great and still works today.  It does however, have the usual overhead of requiring N vms for an N node cluster (1 master and N-1 workers).  Maybe we can improve on that.  You guessed it&#8230;&#8203;.containerize it!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_but_does_it_work">But does it work?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It turns out that it&#8217;s not too hard to make the Spark processes run in a container.  OpenShift provides an object called a Deployment Configuration (<a href="https://docs.openshift.com/container-platform/latest/dev_guide/deployments/how_deployments_work.html" class="bare">https://docs.openshift.com/container-platform/latest/dev_guide/deployments/how_deployments_work.html</a>) that let you quickly define the parts of your Spark cluster (define which image to use, how many containers to spawn, etc).  You can even attach storage or access other services (databases?) in a very straightforward way.  Once your cluster is up scaling your cluster up or down to get the desired number of workers is done near instantly by a quick call to the replication controller for the deployment.  Given the ease of setting up a single node cluster along with some of the images and templates hosted in the radanalyticsio github (<a href="https://github.com/radanalyticsio" class="bare">https://github.com/radanalyticsio</a>) you can set up your own small Spark cluster and run your first job in well under 10 minuntes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_not_a_perfect_world_yet">Not a perfect world&#8230;&#8203;yet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Running multiple deployments to form a Spark cluster works well from some viewpoints, but a user might want to think of their cluster as a whole rather than the sum of a bunch of deployments that are glued together with some fancy networking.  That&#8217;s one place where OpenShift does not yet have an abstraction in place.  One of the projects that I work on has, among other things, the ability to see a cluster as a whole as one of the goals.  Via the templates and apps in <a href="https://github.com/radanalyticsio" class="bare">https://github.com/radanalyticsio</a> you can configure, start, and view a Spark cluster as an entity.  More to come on that in later blog posts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="__well_under_10_minutes_eh">"Well under 10 minutes", eh?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In my next post, I&#8217;ll take myself to task for making such a bold statement and race the clock to make the "Spark fly".</p>
+</div>
+</div>
+</div>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="" class="post-author-avatar">
+                  <img itemprop="image" src="https://avatars.githubusercontent.com/u/889317?v&#x3D;3" alt="Chad Roberts">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Chad Roberts</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                  <p class="post-author-location">Flushing, Michigan, USA</p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">January 30, 2017</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+      <p><small>Copyright &copy; <span itemprop="copyrightHolder">Making sense of it</span>. 2017. All Rights Reserved.</small></p>
+      <p><small><a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="http://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+      <p><small>Adapted by <a href="https://twitter.com/mgreau">Maxime Gréau</a></small></p>
+      <p><small>Published with <a href="http://hubpress.io">HubPress</a></small></p>
+    </footer>
+  </div>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script src="//crobby.github.io/hubpress.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1485811871315"></script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91139231-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+
+  </body>
+</html>
