@@ -2,26 +2,26 @@
 
 :hp-tags: openshift, containers, spark, cluster, big data, extension, angular, origin, kubernetes, console, docker
 
-== Where am I going with this?
+===== Where am I going with this?
 This is meant to be a bit of an introductory post where I can explain a bit of where I'm coming from and where I think I'm headed.  Later posts will include tutorials and quickstart guides for using some of the work that I'm involved with that centers around running Apache Spark clusters on top of OpenShift.
 
-== Wow, containers are great
+===== Wow, containers are great
 I'm going to assume that this isn't your first rodeo and that you know a bit about what containers are and how they work.  When I first stumbled on containers (via docker) a few years ago, I felt like I was watching a magic show.  I had done quite a bit of work with virtual machines and I was actively working on OpenStack.  Given that, my usual workflow to make something happen was 1) build an image (usually via something sort of painful like disk-image-builder), load it into my OpenStack instance, spin-up the vm and hope that it was working properly.  If not, rinse and repeat.  Each loop would take several minutes if I was lucky.  To see a container on my Fedora machine fire-up and run it CentOs bits at light speed was quite a rush.  A quick pull of the centrally-shared image and I was on my way.  
 
-== Probably not just for "Hello, world!", but I just don't see it yet
+===== Probably not just for "Hello, world!", but I just don't see it yet
 My first brush with containers was moslty just toying around.  Various flavors of "Hello, world!" were run and I was happy with that for the time being.  Surely, my mighty vms were still more interesting.  Making the vms networking and storage options work didn't require a pile of command line args and there was already a lot of nice tooling around them.  The vms were still much more comforatble to me.  Making my containers do networking and storage seemed rather flimsy by comparisson.
 
-== Fast forward a few years and enter Kubernetes and OpenShift
+===== Fast forward a few years and enter Kubernetes and OpenShift
 Eventually, I got around to taking a look at OpenShift, which is a customized spin of Kubernetes with some niceities around it (API tweaks, security, et al.).  After a quick one-liner to start up a single-node OpenShift instance (Do download an OpenShift release (https://github.com/openshift/origin/releases) and try the "oc cluster up" commandand---genius stuff) a few clicks, I had a small  containerized nodejs front end that interacted nicely with a containerized mongodb backend that "just worked".  On top of that it was scaleable with another click.  All that functionality running on my laptop in minutes with almost no knowledge or effort on my part.  No longer did the world of containers seem flimsy to me.
 
-== Doing real work in containers?
+===== Doing real work in containers?
 Containers are lovely, but they are still only as useful as the software running in them.  Enter Apache Spark (http://spark.apache.org/).  Spark is a great tool for processing super large scale datasets.  It has a basic master/worker architecture and in the past I had worked on bringing Spark to OpenStack's Sahara project.  Sahara would spin-up a given number of vm instances to run a Spark master and some number of workers.  Terrific stuff really.  It worked great and still works today.  It does however, have the usual overhead of requiring N vms for an N node cluster (1 master and N-1 workers).  Maybe we can improve on that.  You guessed it....containerize it!
 
-== But does it work?
+===== But does it work?
 It turns out that it's not too hard to make the Spark processes run in a container.  OpenShift provides an object called a Deployment Configuration (https://docs.openshift.com/container-platform/latest/dev_guide/deployments/how_deployments_work.html) that let you quickly define the parts of your Spark cluster (define which image to use, how many containers to spawn, etc).  You can even attach storage or access other services (databases?) in a very straightforward way.  Once your cluster is up scaling your cluster up or down to get the desired number of workers is done near instantly by a quick call to the replication controller for the deployment.  Given the ease of setting up a single node cluster along with some of the images and templates hosted in the radanalyticsio github (https://github.com/radanalyticsio) you can set up your own small Spark cluster and run your first job in well under 10 minuntes.
 
-== Not a perfect world...yet
+===== Not a perfect world...yet
 Running multiple deployments to form a Spark cluster works well from some viewpoints, but a user might want to think of their cluster as a whole rather than the sum of a bunch of deployments that are glued together with some fancy networking.  That's one place where OpenShift does not yet have an abstraction in place.  One of the projects that I work on has, among other things, the ability to see a cluster as a whole as one of the goals.  Via the templates and apps in https://github.com/radanalyticsio you can configure, start, and view a Spark cluster as an entity.  More to come on that in later blog posts.
 
-== "Well under 10 minutes", eh?
+===== "Well under 10 minutes", eh?
 In my next post, I'll take myself to task for making such a bold statement and race the clock to make the "Spark fly".
