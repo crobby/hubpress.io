@@ -1,0 +1,10 @@
+= But I want it my way
+A brief history of 
+
+:hp-tags: openshift, containers, spark, cluster, big data, extension, angular, origin, kubernetes, console, docker
+
+
+== Containers are great
+I'm going to assume that this isn't your first rodeo and that you know a bit about what containers are and how they work.  When I first stumbled on containers (via docker) a few years ago, I felt like I was watching a magic show.  I had done quite a bit of work with virtual machines and I was actively working on OpenStack.  Given that, my usual workflow to make something happen was 1) build an image (usually via something sort of painful like disk-image-builder), load it into my OpenStack instance, spin-up the vm and hope that it was working properly.  If not, rinse and repeat.  Each loop would take several minutes if I was lucky.  To see a container on my Fedora machine fire-up and run it CentOs bits at light speed was quite a rush.  A quick pull of the shared image and I was on my way.
+
+== Not just for "Hello, world!"
